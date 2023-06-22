@@ -9,7 +9,7 @@ const routeModuleList: Array<RouteRecordRaw> = [
     redirect: '/dashboard/index',
     component: Layout,
     meta: {
-      title: '主控台',
+      title: '首页',
       icon: 'wap-home',
     },
     children: [
@@ -24,22 +24,42 @@ const routeModuleList: Array<RouteRecordRaw> = [
     ],
   },
   {
-    path: '/message',
-    name: 'Message',
-    redirect: '/message/index',
+    path: '/work',
+    name: 'Work',
+    redirect: '/work/index',
     component: Layout,
     meta: {
-      title: '消息',
-      icon: 'chat',
+      title: '办公',
+      icon: 'apps-o',
     },
     children: [
       {
         path: 'index',
-        name: 'MessagePage',
+        name: 'WorkPage',
         meta: {
           keepAlive: false,
         },
-        component: () => import('@/views/message/index.vue'),
+        component: () => import('@/views/work/index.vue'),
+      },
+    ],
+  },
+  {
+    path: '/contact',
+    name: 'Contact',
+    redirect: '/Contact/index',
+    component: Layout,
+    meta: {
+      title: '通讯录',
+      icon: 'contact',
+    },
+    children: [
+      {
+        path: 'index',
+        name: 'ContactPage',
+        meta: {
+          keepAlive: false,
+        },
+        component: () => import('@/views/contact/index.vue'),
       },
     ],
   },

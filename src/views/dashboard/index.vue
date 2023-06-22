@@ -1,38 +1,56 @@
 <template>
-  <div class="flex flex-col justify-center items-center h-screen p-60px">
-    <div class="wel-box flex flex-col items-center justify-between w-full">
-      <SvgIcon class="logo" :size="130" name="logo" />
-      <div class="text-darkBlue dark:text-garyWhite text-2xl font-black mt-12 mb-4 text-center"
-        >欢迎来到 {{ title }}</div
-      >
-      <div class="w-full mt-4 mb-6">
-        <van-swipe class="h-30" :autoplay="3000" :indicator-color="designStore.appTheme">
-          <van-swipe-item
-            class="text-gray-700 dark:text-gray-400 leading-relaxed text-center"
-            v-for="(text, index) in getSwipeText"
-            :key="index"
-          >
-            <p class="text-lg">{{ text.title }}</p>
-            <p class="text-sm">{{ text.details }}</p>
-          </van-swipe-item>
-        </van-swipe>
-      </div>
+  <div style="height: 160px">
+    <div class="group-panel">
+      <span class="group-title">常用功能</span>
+      <van-grid :center="true" :border="false" :column-num="4">
+        <van-grid-item>
+          <OaIcon picName="newFlow" title="发起流程" />
+        </van-grid-item>
+        <van-grid-item>
+          <OaIcon picName="fabutonggao" title="发布通知" />
+        </van-grid-item>
+        <van-grid-item>
+          <OaIcon picName="send" title="发送邮件" />
+        </van-grid-item>
+        <van-grid-item>
+          <OaIcon picName="ribao" title="工作日报" />
+        </van-grid-item>
+      </van-grid>
     </div>
+  </div>
+  <div style="height: calc(100% - 265px); padding: 10px">
+    <van-tabs
+      v-model:active="active"
+      :style="{ height: '100%', backgroundColor: '#FFF' }"
+      sticky="true"
+    >
+      <van-tab title="我的待办">
+        <van-list :finished="finished" :height="200" finished-text="没有更多了">
+          <van-cell v-for="item in getListText" :key="item.title" :title="item.title" />
+        </van-list>
+      </van-tab>
+      <van-tab title="通知公告">
+        <van-list :finished="finished" :height="200" finished-text="没有更多了">
+          <van-cell v-for="item in getListText" :key="item.title" :title="item.title" />
+        </van-list>
+      </van-tab>
+      <van-tab title="内部邮件">
+        <van-list :finished="finished" :height="200" finished-text="没有更多了">
+          <van-cell v-for="item in getListText" :key="item.title" :title="item.title" />
+        </van-list>
+      </van-tab>
+    </van-tabs>
   </div>
 </template>
 
-<script setup lang="ts" name="DashboardPage">
-  import { computed } from 'vue';
-  import { useDesignSettingStore } from '@/store/modules/designSetting';
-  import SvgIcon from '@/components/SvgIcon.vue';
-  import { useGlobSetting } from '@/hooks/setting';
+<script setup name="DashboardPage">
+  import { computed, ref } from 'vue';
 
-  const designStore = useDesignSettingStore();
-  const globSetting = useGlobSetting();
+  const active = ref(0);
 
-  const { title } = globSetting;
+  const finished = ref(false);
 
-  const getSwipeText = computed(() => {
+  const getListText = computed(() => {
     return [
       {
         title: '💡 最新技术栈',
@@ -58,8 +76,59 @@
         title: '🥳 完善的登录系统、路由、Axios配置',
         details: '所有架构已搭建完毕，你可以直接开发你的业务需求',
       },
+      {
+        title: '🔩 主题配置',
+        details: '具备主题配置及黑暗主题适配，且持久化保存',
+      },
+      {
+        title: '🛠️ 丰富的 Vite 插件',
+        details: '集成大部分 Vite 插件，无需繁琐配置，开箱即用',
+      },
+      {
+        title: '📊 内置 useEcharts hooks',
+        details: '满足大部分图表展示，只需要写你的 options',
+      },
+      {
+        title: '🥳 完善的登录系统、路由、Axios配置',
+        details: '所有架构已搭建完毕，你可以直接开发你的业务需求',
+      },
+      {
+        title: '🔩 主题配置',
+        details: '具备主题配置及黑暗主题适配，且持久化保存',
+      },
+      {
+        title: '🛠️ 丰富的 Vite 插件',
+        details: '集成大部分 Vite 插件，无需繁琐配置，开箱即用',
+      },
+      {
+        title: '📊 内置 useEcharts hooks',
+        details: '满足大部分图表展示，只需要写你的 options',
+      },
+      {
+        title: '🥳 完善的登录系统、路由、Axios配置',
+        details: '所有架构已搭建完毕，你可以直接开发你的业务需求',
+      },
     ];
   });
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+  :deep(.van-tabs__content) {
+    height: calc(100% - 100px);
+    overflow: auto;
+  }
+
+  .group-panel {
+    background-color: #fff;
+    padding: 10px;
+    margin: 15px;
+    border-radius: 10px;
+  }
+
+  .group-title {
+    font-size: 3.6vw;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-left: 1.5vw;
+  }
+</style>
