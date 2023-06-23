@@ -37,7 +37,7 @@ export function getUserInfo() {
  */
 export function doLogout() {
   return http.request({
-    url: '/logout',
+    url: '/mobileLogout',
     method: 'POST',
   });
 }
@@ -45,10 +45,10 @@ export function doLogout() {
 /**
  * @description: 用户修改密码
  */
-export function changePassword(params: any, uid: any) {
+export function changePassword(params: any) {
   return http.request(
     {
-      url: `/user/u${uid}/changepw`,
+      url: `/sys/user/changePass`,
       method: 'POST',
       params,
     },

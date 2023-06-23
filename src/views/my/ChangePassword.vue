@@ -45,16 +45,32 @@
   import NavBar from './components/NavBar.vue';
   import { showDialog } from 'vant';
   import { ref } from 'vue';
+  import { changePassword } from '@/api/system/user';
+  import { ResultEnum } from '@/enums/httpEnum';
+  import { useUserStore } from '@/store/modules/user';
 
   const oldPassword = ref('');
   const newPassword = ref('');
   const confirmPassword = ref('');
+
+  var userStore = useUserStore();
 
   const onSubmit = () => {
     if (newPassword.value !== confirmPassword.value) {
       showDialog({ title: '提示', message: '两次填写的密码不一致' });
       return;
     }
+    changePassword({
+      oldPassword: oldPassword.value,
+      newPassword: newPassword.value,
+    }).then((res) => {
+      if (res.code === ResultEnum.SUCCESS) {
+        showDialog({ title: '提示', message: '密码修改成功' });
+        userStore.Logout();
+      } else {
+        showDialog({ title: '提示', message: res.message });
+      }
+    });
   };
 </script>
 
