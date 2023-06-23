@@ -12,7 +12,7 @@ export interface BasicResponseModel<T = any> {
 export function login(params: any) {
   return http.request<BasicResponseModel>(
     {
-      url: '/login',
+      url: '/mobileLogin',
       method: 'POST',
       params,
     },
@@ -27,7 +27,7 @@ export function login(params: any) {
  */
 export function getUserInfo() {
   return http.request({
-    url: '/getUserInfo',
+    url: '/sys/user/getUserInfo',
     method: 'get',
   });
 }

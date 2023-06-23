@@ -8,7 +8,7 @@
       input-align="right"
       :center="true"
       :border="false"
-      v-model="username"
+      v-model="realname"
     />
     <van-field
       label="手机号"
@@ -39,7 +39,7 @@
   import { computed } from 'vue';
 
   const userStore = useUserStore();
-  const { username, phone } = userStore.getUserInfo;
+  const { realname, phone } = userStore.getUserInfo;
 
   const phoneDesensitize = (phone: string) => {
     const reg = /(\d{3})\d{4}(\d{4})/;

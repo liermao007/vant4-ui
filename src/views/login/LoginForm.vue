@@ -89,8 +89,8 @@
   const rememberMe = ref(false);
   const switchPassType = ref(true);
   const formData = reactive({
-    username: 'admin',
-    password: '123456',
+    username: 'xtadmin',
+    password: 'admin',
   });
 
   const getShow = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN);

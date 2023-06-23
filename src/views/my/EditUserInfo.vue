@@ -19,7 +19,7 @@
     </van-field>
 
     <van-field
-      label="昵称"
+      label="姓名"
       readonly
       label-class="font-bold"
       input-align="right"
@@ -52,34 +52,6 @@
       v-model="state.sign"
       is-link
       to="/editSign"
-    />
-
-    <van-field
-      label="主页封面"
-      label-class="font-bold"
-      input-align="right"
-      :center="true"
-      :border="false"
-      is-link
-      readonly
-    >
-      <template #input>
-        <UploaderImage>
-          <van-image class="cover" fit="cover" :src="cover ? cover : avatar" />
-        </UploaderImage>
-      </template>
-    </van-field>
-
-    <van-field
-      label="行业"
-      readonly
-      label-class="font-bold"
-      input-align="right"
-      :center="true"
-      :border="false"
-      v-model="state.industryText"
-      is-link
-      @click="showIndustryPicker = true"
     />
 
     <van-popup v-model:show="showGenderPicker" position="bottom" round>
@@ -120,7 +92,6 @@
   const state = reactive({
     nickname: '',
     sign: '',
-    // the field v-model
     genderText: '',
     industryText: '',
     // the pick v-model

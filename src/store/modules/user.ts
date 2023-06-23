@@ -67,7 +67,7 @@ export const useUserStore = defineStore({
         const { result, code } = response;
         if (code === ResultEnum.SUCCESS) {
           // save token
-          this.setToken(result.token);
+          this.setToken(result);
         }
         return Promise.resolve(response);
       } catch (error) {
