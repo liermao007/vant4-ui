@@ -8,13 +8,15 @@ import App from './App.vue';
 import { setupStore } from '@/store';
 import router, { setupRouter } from './router';
 import { updateDarkSign } from './theme';
-
+import Vconsole from 'vconsole';
+new Vconsole();
 async function bootstrap() {
   const app = createApp(App);
   // 挂载状态管理
   setupStore(app);
   // 挂载路由
   setupRouter(app);
+
   await router.isReady();
   // 路由准备就绪后挂载APP实例
   app.mount('#app', true);
