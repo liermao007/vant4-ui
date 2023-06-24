@@ -57,3 +57,10 @@ export function changePassword(params: any) {
     }
   );
 }
+
+export function allUsers() {
+  return http.request({
+    url: '/sys/user/getUsers',
+    method: 'get',
+  });
+}

@@ -103,8 +103,6 @@ export const useUserStore = defineStore({
       router.push(PageEnum.BASE_LOGIN);
       location.reload();
     },
-
-
   },
 });
 

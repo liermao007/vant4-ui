@@ -1,50 +1,34 @@
 <template>
   <van-index-bar>
-    <van-index-anchor index="A" />
-    <van-cell title="张三 17000000000" clickable @click="detail(1)" />
-    <van-cell title="文本" :clickable="true" />
-    <van-cell title="文本" />
-
-    <van-index-anchor index="B" />
-    <van-cell title="文本" />
-    <van-cell title="文本" />
-    <van-cell title="文本" />
-
-    <van-index-anchor index="C" />
-    <van-cell title="文本" />
-    <van-cell title="文本" />
-    <van-cell title="文本" />
-
-    <van-index-anchor index="E" />
-    <van-cell title="文本" />
-    <van-cell title="文本" />
-    <van-cell title="文本" />
-
-    <van-index-anchor index="H" />
-    <van-cell title="文本" />
-    <van-cell title="文本" />
-    <van-cell title="文本" />
-
-    <van-index-anchor index="M" />
-    <van-cell title="文本" />
-    <van-cell title="文本" />
-    <van-cell title="文本" />
-
-    <van-index-anchor index="O" />
-    <van-cell title="文本" />
-    <van-cell title="文本" />
-    <van-cell title="文本" />
-
-    <van-index-anchor index="Z" />
-    <van-cell title="文本" />
-    <van-cell title="文本" />
-    <van-cell title="文本" />
+    <template v-for="item in data" :key="item.index">
+      <van-index-anchor :index="item.index" />
+      <van-cell
+        v-for="cell in item.phones"
+        :title="cell.name"
+        :key="cell.phone"
+        :clickable="true"
+        @click="goToDetail(cell)"
+      />
+    </template>
   </van-index-bar>
 </template>
 
 <script setup lang="ts">
-  const detail = (index) => {
-    alert(index);
+  import { ref, onBeforeMount } from 'vue';
+  import { useRouter } from 'vue-router';
+  import { allUsers } from '@/api/system/user';
+
+  let data = ref({});
+  const router = useRouter();
+
+  onBeforeMount(() => {
+    allUsers().then((res) => {
+      data.value = res;
+    });
+  });
+
+  const goToDetail = (cell) => {
+    router.push({ path: '/contactDetailPage', query: cell });
   };
 </script>
 

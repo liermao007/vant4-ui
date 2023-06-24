@@ -64,6 +64,15 @@ const routeModuleList: Array<RouteRecordRaw> = [
     ],
   },
   {
+    path: '/contactDetailPage',
+    name: 'ContactDetailPage',
+    meta: {
+      title: '联系人信息',
+      innerPage: true,
+    },
+    component: () => import('@/views/contact/detail.vue'),
+  },
+  {
     path: '/my',
     name: 'My',
     redirect: '/my/index',

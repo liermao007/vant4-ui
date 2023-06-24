@@ -1,53 +1,50 @@
 <template>
-  <div style="height: 160px">
-    <div class="group-panel">
-      <span class="group-title">常用功能</span>
-      <van-grid :center="true" :border="false" :column-num="4">
-        <van-grid-item>
-          <OaIcon picName="newFlow" title="发起流程" />
-        </van-grid-item>
-        <van-grid-item>
-          <OaIcon picName="fabutonggao" title="发布通知" />
-        </van-grid-item>
-        <van-grid-item>
-          <OaIcon picName="send" title="发送邮件" />
-        </van-grid-item>
-        <van-grid-item>
-          <OaIcon picName="ribao" title="工作日报" />
-        </van-grid-item>
-      </van-grid>
+  <div>
+    <div style="height: 145px">
+      <div class="group-panel">
+        <span class="group-title">常用功能</span>
+        <van-grid :center="true" :border="false" :column-num="4">
+          <van-grid-item>
+            <OaIcon picName="newFlow" title="发起流程" />
+          </van-grid-item>
+          <van-grid-item>
+            <OaIcon picName="fabutonggao" title="发布通知" />
+          </van-grid-item>
+          <van-grid-item>
+            <OaIcon picName="send" title="发送邮件" />
+          </van-grid-item>
+          <van-grid-item>
+            <OaIcon picName="ribao" title="工作日报" />
+          </van-grid-item>
+        </van-grid>
+      </div>
     </div>
-  </div>
-  <div style="height: calc(100% - 265px); padding: 10px">
-    <van-tabs
-      v-model:active="active"
-      :style="{ height: '100%', backgroundColor: '#FFF' }"
-      sticky="true"
-    >
-      <van-tab title="我的待办">
-        <van-list :finished="finished" :height="200" finished-text="没有更多了">
-          <van-cell v-for="item in getListText" :key="item.title" :title="item.title" />
-        </van-list>
-      </van-tab>
-      <van-tab title="通知公告">
-        <van-list :finished="finished" :height="200" finished-text="没有更多了">
-          <van-cell v-for="item in getListText" :key="item.title" :title="item.title" />
-        </van-list>
-      </van-tab>
-      <van-tab title="内部邮件">
-        <van-list :finished="finished" :height="200" finished-text="没有更多了">
-          <van-cell v-for="item in getListText" :key="item.title" :title="item.title" />
-        </van-list>
-      </van-tab>
-    </van-tabs>
+    <div style="height: calc(100% - 225px); padding: 10px">
+      <van-tabs v-model:active="active" :style="{ height: '100%', backgroundColor: '#FFF' }" sticky>
+        <van-tab title="我的待办">
+          <van-list :finished="finished" :height="200" finished-text="没有更多了">
+            <van-cell v-for="item in getListText" :key="item.title" :title="item.title" />
+          </van-list>
+        </van-tab>
+        <van-tab title="通知公告">
+          <van-list :finished="finished" :height="200" finished-text="没有更多了">
+            <van-cell v-for="item in getListText" :key="item.title" :title="item.title" />
+          </van-list>
+        </van-tab>
+        <van-tab title="内部邮件">
+          <van-list :finished="finished" :height="200" finished-text="没有更多了">
+            <van-cell v-for="item in getListText" :key="item.title" :title="item.title" />
+          </van-list>
+        </van-tab>
+      </van-tabs>
+    </div>
   </div>
 </template>
 
-<script setup name="DashboardPage">
+<script setup>
   import { computed, ref } from 'vue';
 
   const active = ref(0);
-
   const finished = ref(false);
 
   const getListText = computed(() => {
@@ -114,7 +111,7 @@
 
 <style scoped lang="less">
   :deep(.van-tabs__content) {
-    height: calc(100% - 100px);
+    height: calc(100% - 7vw);
     overflow: auto;
   }
 

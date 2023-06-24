@@ -1,5 +1,5 @@
 <template>
-  <SvgIcon :size="55" :name="picName" />
+  <SvgIcon :size="size" :name="picName" />
   <span style="margin-top: 5px; min-width: 48px; text-align: center; font-size: 13px">{{
     title
   }}</span>
@@ -16,6 +16,10 @@
       picName: {
         type: String,
         required: true,
+      },
+      size: {
+        type: String,
+        default: '55',
       },
     },
     data() {
